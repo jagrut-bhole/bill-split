@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../stylesheets/authenticate.css" />
+    <title>Sign Up Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Create Account</h2>
+      </div>
+      <form id="form" class="form" >
+        <div class="form-control">
+          <label for="username">Name: </label>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            id="name"
+            name="name"
+            required
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <span class="name error"></span>
+        </div>
+
+        <div class="form-control">
+          <label for="username">Username: </label>
+          <input
+            type="text"
+            placeholder="Enter your username"
+            id="username"
+            name="username"
+            required
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <span class="username error"></span>
+        </div>
+
+        <div class="form-control">
+          <label for="username">Email: </label>
+          <input type="text" placeholder="Enter your email" id="email" name="email" required />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <span class="email error"></span>
+        </div>
+        <!-- <div class="form-control">
+          <label for="username">Password: </label>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            id="password"
+            name="password"
+            required
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <span class="password error"></span>
+        </div> -->
+        <div class="form-control">
+          <label for="password">Password: </label>
+          <input type="password"
+          id="inputPassword5"
+          class="form-control"
+          aria-describedby="passwordHelpBlock"
+          name="password"
+          required
+          placeholder="Enter your password"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <div class="form-text" id="passwordHelpBlock" style="color: gray; font-size: 15px;">
+            • Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, or emoji.
+          </div>
+          <span class="password error"></span>
+        </div>
+        <button>Sign Up</button>
+      </form>
+      <div class="redirect-to-another">
+        <a href="/login">Already have an account ?</a>
+      </div>
+    </div>
+
+    <script src="../javascripts/script.js"></script>
+    <script src="../javascripts/authenticate-signup.js"></script>
+  </body>
+</html>

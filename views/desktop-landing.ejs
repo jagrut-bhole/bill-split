@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+
+    <title>Trial Page</title>
+  </head>
+  <body>
+    <nav>
+      <div class="name">
+        <h3>Bill Splitter</h3>
+      </div>
+      <div class="another-name-1">
+        <% if (user) { %> 
+        <ul class="links">
+          <li><a href="/trial">HOME</a></li>
+          <li><a href="/profile">PROFILE</a></li>
+          <li><a href="/logout">LOGOUT</a></li>
+        </ul>
+        <% } else { %>
+        <div class="button-class">
+          <!-- <button id="navigate-button" class="button">SIGN-UP/LOGIN</button> -->
+          <a class="button2" href="/login">LOGIN</a>
+          <a class="button" href="/signup">SIGN-UP</a>
+        </div>
+        <% } %>
+      </div>
+    </nav>
+    <header>
+      <div class="hero">
+        <div class="content">
+          <h1>Split up your Bills<br /><span>today</span></h1>
+          <p>Manage your expenses effortlessly and split bills with ease.</p>
+          <% if (user) { %>
+          <a href="/dashboard" target="_blank" rel="noreferrer noopener" >Get Started</a>
+          <% } else { %>
+          <a href="/signup" target="_blank" rel="noreferrer noopener" >Start now</a>
+          <% } %>
+        </div>
+      </div>
+      <div class="sticker">
+        <div class="content">
+          <div class="panel">
+            <div class="panel__row">
+              <div class="card card--one">
+                <!-- In here we have various moving section on scroll -->
+                <!-- 1. Two side columns and a shifting middle -->
+                <div class="card__column">
+                  <div class="card__avatar">
+                    <img
+                      src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/526.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <!-- Inside the content you have two sliding panels -->
+                <div class="card__content">
+                  <div class="card__details">
+                    <div class="text"></div>
+                    <div class="image headspace">
+                      <svg
+                        role="img"
+                        viewBox="0 0 28 28"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>Rupee</title>
+                        <path
+                          fill="currentColor"
+                          d="M7.06 2c-.984 0-1.818.738-1.92 1.725c-.148 1.408-.39 3.957-.39 5.525c0 1.48.678 2.802 1.737 3.672c.348.286.513.6.513.864v.662l-.001.047C6.958 15.094 6.5 21.782 6.5 23a3 3 0 1 0 6 0c0-1.218-.457-7.906-.499-8.505L12 14.448v-.662c0-.265.165-.578.513-.864A4.74 4.74 0 0 0 14.25 9.25c0-1.568-.242-4.117-.39-5.525A1.927 1.927 0 0 0 11.94 2c-.457 0-.878.158-1.21.423A2 2 0 0 0 9.5 2a2 2 0 0 0-1.23.423A1.93 1.93 0 0 0 7.06 2M9 4a.5.5 0 0 1 1 0v5.25a.75.75 0 0 0 1.5 0V3.94a.44.44 0 0 1 .44-.44c.225 0 .407.167.429.381c.148 1.42.381 3.892.381 5.369a3.24 3.24 0 0 1-1.189 2.513c-.538.442-1.061 1.14-1.061 2.023v.662c0 .05.001.096.005.15c.044.645.495 7.251.495 8.402a1.5 1.5 0 0 1-3 0c0-1.15.45-7.757.495-8.402c.004-.054.005-.1.005-.15v-.662c0-.884-.523-1.581-1.061-2.023A3.24 3.24 0 0 1 6.25 9.25c0-1.477.233-3.948.381-5.369A.427.427 0 0 1 7.06 3.5a.44.44 0 0 1 .44.44v5.31a.75.75 0 0 0 1.5 0zm13.5-.494v9.744c0 .35.094 1.997.198 3.81l.006.105C22.844 19.601 23 22.33 23 23a1.5 1.5 0 0 1-3 0c0-.595.123-3.003.249-5.3a1210 1210 0 0 1 .228-4.038l.022-.368l.001-.044a.75.75 0 0 0-.75-.75h-2a.25.25 0 0 1-.25-.25v-3.5a5.25 5.25 0 0 1 5-5.244M18.955 14l-.032.556c-.047.817-.11 1.92-.172 3.062c-.124 2.267-.251 4.734-.251 5.382a3 3 0 1 0 6 0c0-.721-.158-3.474-.294-5.855l-.004-.066C24.093 15.18 24 13.55 24 13.25V2.75a.75.75 0 0 0-.75-.75h-.5A6.75 6.75 0 0 0 16 8.75v3.5c0 .966.784 1.75 1.75 1.75z"
+                          style="fill: black"
+                        />
+                      </svg>
+                    </div>
+                    <div class="text"></div>
+                    <div class="card__dummy">
+                      <div class="text-wrap">
+                        <div class="text"></div>
+                        <div class="text"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card__column">
+                  <div class="card__company alexa">
+                    <svg
+                      role="img"
+                      viewBox="0 0 14 14"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <title>Money</title>
+                      <path
+                        fill="#ee1b1b"
+                        fill-rule="evenodd"
+                        d="M1.5 0A1.5 1.5 0 0 0 0 1.5v6A1.5 1.5 0 0 0 1.5 9h11A1.5 1.5 0 0 0 14 7.5v-6A1.5 1.5 0 0 0 12.5 0zm6.125 1.454a.625.625 0 1 0-1.25 0v.4a1.532 1.532 0 0 0-.15 3.018l1.197.261a.39.39 0 0 1-.084.773h-.676a.39.39 0 0 1-.369-.26a.625.625 0 0 0-1.178.416c.194.55.673.965 1.26 1.069v.415a.625.625 0 1 0 1.25 0V7.13a1.641 1.641 0 0 0 .064-3.219L6.492 3.65a.281.281 0 0 1 .06-.556h.786a.388.388 0 0 1 .369.26a.625.625 0 1 0 1.178-.416a1.64 1.64 0 0 0-1.26-1.069zM2.75 3.75a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5m8.5 0a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5M4.5 9.875c.345 0 .625.28.625.625v2a.625.625 0 1 1-1.25 0v-2c0-.345.28-.625.625-.625m5.625.625a.625.625 0 1 0-1.25 0v2a.625.625 0 1 0 1.25 0zm-2.5.75a.625.625 0 1 0-1.25 0v2a.625.625 0 1 0 1.25 0z"
+                        clip-rule="evenodd"
+                        style="fill: green"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel__row">
+              <div class="card card--three">
+                <!-- In here we have various moving section on scroll -->
+                <!-- 1. Two side columns and a shifting middle -->
+                <div class="card__column">
+                  <div class="card__avatar">
+                    <svg
+                      role="img"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Cart</title>
+                      <path
+                        fill="black"
+                        d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2s-.9-2-2-2m10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2s2-.9 2-2s-.9-2-2-2m-1.45-5c.75 0 1.41-.41 1.75-1.03l3.58-6.49A.996.996 0 0 0 20.01 4H5.21l-.94-2H1v2h2l3.6 7.59l-1.35 2.44C4.52 15.37 5.48 17 7 17h12v-2H7l1.1-2zM6.16 6h12.15l-2.76 5H8.53z"
+                      />
+                    </svg>
+                    <img
+                      src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/430.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="card__dummy">
+                    <div class="text-wrap">
+                      <div class="text"></div>
+                      <div class="text"></div>
+                    </div>
+                    <div class="cta"></div>
+                  </div>
+                </div>
+                <!-- Inside the content you have two sliding panels -->
+                <div class="card__content">
+                  <div class="card__details">
+                    <div class="text"></div>
+                    <div class="image grocery-bill">
+                      <svg
+                        role="img"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="width: 100%; height: 100%"
+                      >
+                        <title>Rent</title>
+                        <path
+                          fill="#ee1b1b"
+                          d="M5.616 16.462H6.5v-1.577h11v1.577h.885v-5.385h-.75V8.231H6.365v2.846h-.75zm6.826-5.385V9.116h4.308v1.961zm-5.192 0V9.116h4.308v1.961zM6.5 14v-2h11v2zM3 21V3h18v18zm1-1h16V4H4zm0 0V4z"
+                          style="fill: black"
+                        />
+                      </svg>
+                    </div>
+                    <div class="text"></div>
+                  </div>
+                </div>
+
+                <div class="card__column">
+                  <div class="card__company slack">
+                    <svg
+                      role="img"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="width: 75%; height: 75%"
+                    >
+                      <title>Bill</title>
+                      <path
+                        d="M9.5 10.5H12a1 1 0 0 0 0-2h-1V8a1 1 0 0 0-2 0v.55a2.5 2.5 0 0 0 .5 4.95h1a.5.5 0 0 1 0 1H8a1 1 0 0 0 0 2h1v.5a1 1 0 0 0 2 0v-.55a2.5 2.5 0 0 0-.5-4.95h-1a.5.5 0 0 1 0-1M21 12h-3V3a1 1 0 0 0-.5-.87a1 1 0 0 0-1 0l-3 1.72l-3-1.72a1 1 0 0 0-1 0l-3 1.72l-3-1.72a1 1 0 0 0-1 0A1 1 0 0 0 2 3v16a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-6a1 1 0 0 0-1-1M5 20a1 1 0 0 1-1-1V4.73l2 1.14a1.08 1.08 0 0 0 1 0l3-1.72l3 1.72a1.08 1.08 0 0 0 1 0l2-1.14V19a3 3 0 0 0 .18 1Zm15-1a1 1 0 0 1-2 0v-5h2Z"
+                        style="fill: black"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel__row">
+              <div class="card card--two">
+                <!-- In here we have various moving section on scroll -->
+                <!-- 1. Two side columns and a shifting middle -->
+                <div class="card__column">
+                  <div class="card__avatar">
+                    <img
+                      src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/535.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <!-- Inside the content you have two sliding panels -->
+                <div class="card__content">
+                  <div class="card__details">
+                    <div class="text"></div>
+                    <div class="image messenger">
+                      <svg
+                        role="img"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="width: 100%; height: 100%"
+                      >
+                        <title>Bitcoin</title>
+                        <path
+                          d="M19.515 10.04c.31-2.105-1.284-3.228-3.48-3.99l.712-2.837l-1.734-.431l-.691 2.767l-1.384-.331l.701-2.787L11.906 2l-.711 2.847l-1.103-.26v-.01l-2.396-.602l-.461 1.854s1.283.302 1.263.311c.702.181.822.642.802 1.003l-.802 3.248l.18.06l-.19-.04l-1.133 4.541c-.08.211-.301.532-.792.401c.02.03-1.253-.3-1.253-.3l-.862 1.975l2.256.56l1.233.322l-.722 2.877l1.734.43l.702-2.846l1.393.36l-.711 2.837l1.734.432l.711-2.877c2.958.56 5.184.34 6.116-2.337c.752-2.154-.04-3.388-1.594-4.21c1.133-.25 1.985-1.002 2.205-2.536zm-3.96 5.554c-.532 2.156-4.16.982-5.333.702l.952-3.82c1.172.301 4.942.872 4.38 3.108zm.531-5.584c-.481 1.955-3.509.962-4.481.722l.861-3.459c.983.241 4.13.702 3.62 2.737"
+                          style="fill: #f7931a"
+                        />
+                      </svg>
+                    </div>
+                    <div class="text"></div>
+                  </div>
+                </div>
+                <div class="card__column">
+                  <div class="card__company notion">
+                    <svg
+                      role="img"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Notion</title>
+                      <path
+                        d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933zM1.936 1.035l13.31-.98c1.634-.14 2.055-.047 3.082.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.68 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.667c0-.839.374-1.54 1.447-1.632z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel__row">
+              <div class="card card--six">
+                <!-- In here we have various moving section on scroll -->
+                <!-- 1. Two side columns and a shifting middle -->
+                <div class="card__column">
+                  <div class="card__avatar">
+                    <svg
+                      role="img"
+                      style="background: white"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Twilio</title>
+                      <path
+                        fill="#F22F46"
+                        d="M12 0C5.381-.008.008 5.352 0 11.971V12c0 6.64 5.359 12 12 12 6.64 0 12-5.36 12-12 0-6.641-5.36-12-12-12zm0 20.801c-4.846.015-8.786-3.904-8.801-8.75V12c-.014-4.846 3.904-8.786 8.75-8.801H12c4.847-.014 8.786 3.904 8.801 8.75V12c.015 4.847-3.904 8.786-8.75 8.801H12zm5.44-11.76c0 1.359-1.12 2.479-2.481 2.479-1.366-.007-2.472-1.113-2.479-2.479 0-1.361 1.12-2.481 2.479-2.481 1.361 0 2.481 1.12 2.481 2.481zm0 5.919c0 1.36-1.12 2.48-2.481 2.48-1.367-.008-2.473-1.114-2.479-2.48 0-1.359 1.12-2.479 2.479-2.479 1.361-.001 2.481 1.12 2.481 2.479zm-5.919 0c0 1.36-1.12 2.48-2.479 2.48-1.368-.007-2.475-1.113-2.481-2.48 0-1.359 1.12-2.479 2.481-2.479 1.358-.001 2.479 1.12 2.479 2.479zm0-5.919c0 1.359-1.12 2.479-2.479 2.479-1.367-.007-2.475-1.112-2.481-2.479 0-1.361 1.12-2.481 2.481-2.481 1.358 0 2.479 1.12 2.479 2.481z"
+                      />
+                    </svg>
+                    <img
+                      src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/332.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="card__dummy">
+                    <div class="text-wrap">
+                      <div class="text"></div>
+                      <div class="text"></div>
+                    </div>
+                    <div class="grid">
+                      <div class="grid__panel"></div>
+                      <div class="grid__panel"></div>
+                      <div class="grid__panel"></div>
+                      <div class="grid__panel"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Inside the content you have two sliding panels -->
+                <div class="card__content">
+                  <div class="card__details">
+                    <div class="text"></div>
+                    <div class="image paypal">
+                      <svg
+                        role="img"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>PayPal</title>
+                        <path
+                          d="M7.016 19.198h-4.2a.562.562 0 0 1-.555-.65L5.093.584A.692.692 0 0 1 5.776 0h7.222c3.417 0 5.904 2.488 5.846 5.5-.006.25-.027.5-.066.747A6.794 6.794 0 0 1 12.071 12H8.743a.69.69 0 0 0-.682.583l-.325 2.056-.013.083-.692 4.39-.015.087zM19.79 6.142c-.01.087-.01.175-.023.261a7.76 7.76 0 0 1-7.695 6.598H9.007l-.283 1.795-.013.083-.692 4.39-.134.843-.014.088H6.86l-.497 3.15a.562.562 0 0 0 .555.65h3.612c.34 0 .63-.249.683-.585l.952-6.031a.692.692 0 0 1 .683-.584h2.126a6.793 6.793 0 0 0 6.707-5.752c.306-1.95-.466-3.744-1.89-4.906z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="text"></div>
+                  </div>
+                </div>
+                <div class="card__column">
+                  <div class="card__company password">
+                    <svg
+                      role="img"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="width: 80%; height: 100%"
+                    >
+                      <title>Google Pay</title>
+                      <path
+                        d="M3.963 7.235A3.96 3.96 0 0 0 .422 9.419a3.96 3.96 0 0 0 0 3.559a3.96 3.96 0 0 0 3.541 2.184c1.07 0 1.97-.352 2.627-.957c.748-.69 1.18-1.71 1.18-2.916a5 5 0 0 0-.07-.806H3.964v1.526h2.14a1.84 1.84 0 0 1-.79 1.205c-.356.241-.814.379-1.35.379c-1.034 0-1.911-.697-2.225-1.636a2.38 2.38 0 0 1 0-1.517c.314-.94 1.191-1.636 2.225-1.636a2.15 2.15 0 0 1 1.52.594l1.132-1.13a3.8 3.8 0 0 0-2.652-1.033zm6.501.55v6.9h.886V11.89h1.465q.904 0 1.522-.588a1.91 1.91 0 0 0 .635-1.464a1.92 1.92 0 0 0-.635-1.456a2.13 2.13 0 0 0-1.522-.598zm2.427.85a1.16 1.16 0 0 1 .823.365a1.176 1.176 0 0 1 0 1.686a1.17 1.17 0 0 1-.877.357H11.35V8.635zm4.124 1.175q-1.262 0-1.907.925l.781.491q.432-.626 1.175-.626a1.25 1.25 0 0 1 .856.323a1 1 0 0 1 .366.785v.202q-.51-.29-1.3-.289q-.926 0-1.479.434q-.555.432-.554 1.165a1.48 1.48 0 0 0 .525 1.156q.525.463 1.305.463q.915 0 1.465-.81h.038v.655h.848v-2.909q0-.915-.568-1.44q-.57-.525-1.551-.525m2.263.154l1.946 4.422l-1.098 2.38h.915L24 9.963h-.965l-1.368 3.391h-.02l-1.406-3.39zm-2.146 2.368q.741 0 1.156.33q0 .558-.44.973a1.4 1.4 0 0 1-.997.414a1.08 1.08 0 0 1-.69-.232a.71.71 0 0 1-.293-.578q0-.383.363-.647q.36-.26.9-.26Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel__row">
+              <div class="card card--five">
+                <div class="card__column">
+                  <div class="card__avatar">
+                    <svg
+                      style="background: white"
+                      role="img"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <title>Spotify</title>
+                      <path
+                        fill="#1DB954"
+                        d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+                      />
+                    </svg>
+                    <img
+                      src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1011.jpg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="card__dummy">
+                    <div class="text-wrap">
+                      <div class="text"></div>
+                      <div class="text"></div>
+                    </div>
+                    <div class="grid">
+                      <div class="grid__panel"></div>
+                      <div class="grid__panel"></div>
+                      <div class="grid__panel"></div>
+                      <div class="grid__panel"></div>
+                    </div>
+                    <div class="cta"></div>
+                  </div>
+                </div>
+                <!-- Inside the content you have two sliding panels -->
+                <div class="card__content">
+                  <div class="card__details">
+                    <div class="text"></div>
+                    <div class="image calendly">
+                      <svg
+                        role="img"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                        style="
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                        "
+                      >
+                        <title>Calendly</title>
+                        <path
+                          d="M19.655 14.262c.281 0 .557.023.828.064 0 .005-.005.01-.005.014-.105.267-.234.534-.381.786l-1.219 2.106c-1.112 1.936-3.177 3.127-5.411 3.127h-2.432c-2.23 0-4.294-1.191-5.412-3.127l-1.218-2.106a6.251 6.251 0 0 1 0-6.252l1.218-2.106C6.736 4.832 8.8 3.641 11.035 3.641h2.432c2.23 0 4.294 1.191 5.411 3.127l1.219 2.106c.147.252.271.519.381.786 0 .004.005.009.005.014-.267.041-.543.064-.828.064-1.816 0-2.501-.607-3.291-1.306-.764-.676-1.711-1.517-3.44-1.517h-1.029c-1.251 0-2.387.455-3.2 1.278-.796.805-1.233 1.904-1.233 3.099v1.411c0 1.196.437 2.295 1.233 3.099.813.823 1.949 1.278 3.2 1.278h1.034c1.729 0 2.676-.841 3.439-1.517.791-.703 1.471-1.306 3.287-1.301Zm.005-3.237c.399 0 .794-.036 1.179-.11-.002-.004-.002-.01-.002-.014-.073-.414-.193-.823-.349-1.218.731-.12 1.407-.396 1.986-.819 0-.004-.005-.013-.005-.018-.331-1.085-.832-2.101-1.489-3.03-.649-.915-1.435-1.719-2.331-2.395-1.867-1.398-4.088-2.138-6.428-2.138-1.448 0-2.855.28-4.175.841-1.273.543-2.423 1.315-3.407 2.299S2.878 6.552 2.341 7.83c-.557 1.324-.842 2.726-.842 4.175 0 1.448.281 2.855.842 4.174.542 1.274 1.314 2.423 2.298 3.407s2.129 1.761 3.407 2.299c1.324.556 2.727.841 4.175.841 2.34 0 4.561-.74 6.428-2.137a10.815 10.815 0 0 0 2.331-2.396c.652-.929 1.158-1.949 1.489-3.03 0-.004.005-.014.005-.018-.579-.423-1.255-.699-1.986-.819.161-.395.276-.804.349-1.218.005-.009.005-.014.005-.023.869.166 1.692.506 2.404 1.035.685.505.552 1.075.446 1.416C22.184 20.437 17.619 24 12.221 24c-6.625 0-12-5.375-12-12s5.37-12 12-12c5.398 0 9.963 3.563 11.471 8.464.106.341.239.915-.446 1.421-.717.529-1.535.873-2.404 1.034.128.716.128 1.45 0 2.166-.387-.074-.782-.11-1.182-.11-4.184 0-3.968 2.823-6.736 2.823h-1.029c-1.899 0-3.15-1.357-3.15-3.095v-1.411c0-1.738 1.251-3.094 3.15-3.094h1.034c2.768 0 2.552 2.823 6.731 2.827Z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="text"></div>
+                  </div>
+                </div>
+                <div class="card__column">
+                  <div class="card__company bluesky">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 24 24"
+                      style="
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <title>Mart</title>
+                      <path
+                        fill="currentColor"
+                        d="M12 0q-.75 0-1.5.75L7.97 3.28l8.83 8.83q1.5 1.5 1.5 3V24h3.3q2.4 0 2.4-2.4v-8.85q0-1.5-1.5-3l-9-9Q12.75 0 12 0M6.9 4.34L2.89 8.37L9.6 15.1q1.5 1.5 1.5 3V24h5.7v-8.89c-.03-.83-.6-1.46-1.06-1.94L6.91 4.34zm-5.08 5.1l-.32.31q-1.5 1.5-1.5 3v8.85Q0 24 2.4 24h7.2v-5.9c-.03-.8-.56-1.42-1.06-1.95Z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel__row">
+              <div class="card card--four">
+                <!-- In here we have various moving section on scroll -->
+                <!-- 1. Two side columns and a shifting middle -->
+                <div class="card__column">
+                  <div class="card__avatar">
+                    <img
+                      src="https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/47.jpg"
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <!-- Inside the content you have two sliding panels -->
+                <div class="card__content">
+                  <div class="card__details">
+                    <div class="text"></div>
+                    <div class="image netflix">
+                      <svg
+                        role="img"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <title>Netflix</title>
+                        <path
+                          fill="#ee1b1b"
+                          d="M6.5 2h4l2.94 8.83L13.5 2h4v20c-1.25-.22-2.63-.36-4.09-.42L10.5 13l-.07 8.59c-1.4.06-2.73.2-3.93.41z"
+                          style="fill: #ee1b1b"
+                        />
+                      </svg>
+                    </div>
+                    <div class="text"></div>
+                    <div class="card__dummy">
+                      <div class="text-wrap">
+                        <div class="text"></div>
+                        <div class="text"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="card__column">
+                  <div class="card__company apay">
+                    <svg
+                      role="img"
+                      viewBox="0 0 256 256"
+                      xmlns="http://www.w3.org/2000/svg"
+                      style="
+                        width: 80%;
+                        height: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                      "
+                    >
+                      <title>Amazon Pay</title>
+                      <path
+                        fill="#1ed760"
+                        d="M128 0C57.308 0 0 57.309 0 128c0 70.696 57.309 128 128 128c70.697 0 128-57.304 128-128C256 57.314 198.697.007 127.998.007zm58.699 184.614c-2.293 3.76-7.215 4.952-10.975 2.644c-30.053-18.357-67.885-22.515-112.44-12.335a7.98 7.98 0 0 1-9.552-6.007a7.97 7.97 0 0 1 6-9.553c48.76-11.14 90.583-6.344 124.323 14.276c3.76 2.308 4.952 7.215 2.644 10.975m15.667-34.853c-2.89 4.695-9.034 6.178-13.726 3.289c-34.406-21.148-86.853-27.273-127.548-14.92c-5.278 1.594-10.852-1.38-12.454-6.649c-1.59-5.278 1.386-10.842 6.655-12.446c46.485-14.106 104.275-7.273 143.787 17.007c4.692 2.89 6.175 9.034 3.286 13.72zm1.345-36.293C162.457 88.964 94.394 86.71 55.007 98.666c-6.325 1.918-13.014-1.653-14.93-7.978c-1.917-6.328 1.65-13.012 7.98-14.935C93.27 62.027 168.434 64.68 215.929 92.876c5.702 3.376 7.566 10.724 4.188 16.405c-3.362 5.69-10.73 7.565-16.4 4.187z"
+                        style="fill: rgb(76, 240, 76)"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroller">
+        <div class="content">
+          <div class="panel">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+      </div>
+      <div class="ring ring--under">
+        <img src="../images/portal-ring-under.png" alt="" />
+      </div>
+      <div class="ring ring--over">
+        <img src="../images/portal-ring-over.png" alt="" />
+      </div>
+    </header>
+    
+    <!-- Under Parts -->
+     <div class="container">
+      <div class="container-text">
+        <h1 class="text-h1">Simplify Expense Sharing</h1>
+        <p class="text-p">Share bills and expenses with ease</p>
+      </div>
+      <div class="container-card">
+        <div class="cardu">
+          <h2 class="card-text">Expense Sharing</h2>
+          <p class="card-p">Easily share expenses and bills with friends and family.</p>
+          <a class="card-a" href="#">Learn More →</a>
+        </div>
+        <div class="cardu">
+          <h2 class="card-text">Real-time updates</h2>
+          <p class="card-p">Get real-time updates on shared expenses and bills.</p>
+          <a class="card-a" href="#">Learn More →</a>
+        </div>
+        <div class="cardu">
+          <h2 class="card-text">Splitting Options</h2>
+          <p class="card-p">Multiple options for splitting bills among group members.</p>
+          <a class="card-a" href="#">Learn More →</a>
+        </div>
+      </div>
+     </div>
+
+     <!-- Newsletter -->
+      <div class="newsletter">
+        <form class="form">
+          <span class="title">Subscribe to our Newsletter</span>
+          <p class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste rerum aspernatur sapiente omnis explicabo eaque fugit tempora sit ratione quo.</p>
+          <div class="temp">
+            <input type="email" id="email-address" placeholder="Enter your E-mail">
+            <button type="submit">Subscribe</button>
+          </div>
+        </form>
+      </div>
+
+    <!-- Footer -->
+    <div class="foot-body">
+      <footer id="footer">
+        <div class="col col1">
+          <h3>Bill Split</h3>
+          <p >Made with <span style="color: #ba6573">❤</span> By Jagrut</p>
+          <div class="social">
+            <a href="#" target="_blank" class="link"
+              ><img class="img" src="../images/instagram.png" alt=""
+            /></a>
+            <a href="#" target="_blank" class="link"
+              ><img class="img" src="../images/youtube.png" alt=""
+            /></a>
+            <a href="#" target="_blank" class="link"
+              ><img class="img" src="../images/facebook.png" alt=""
+            /></a>
+          </div>
+        </div>
+        <div class="col col2">
+          <p>About</p>
+          <p>Our mission</p>
+          <p>Privacy & Policy</p>
+          <p>Terms of Services</p>
+        </div>
+        <div class="col col3">
+          <p>Services</p>
+          <p>Products</p>
+          <p>Join With Us</p>
+          <p>Partener With Us</p>
+        </div>
+        <div class="backdrop"></div>
+      </footer>
+    </div>
+    <script src="../javascripts/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
+</html>

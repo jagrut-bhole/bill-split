@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - Bill Split</title>
+    <link rel="stylesheet" href="../stylesheets/profile.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMNPEz9M0I0E7uL0Jn1Rj7v3R/YR8e/tMBUjCKI"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- <div class="date-time">
+      <p id="current-date"></p>
+      <p id="current-time"></p>
+    </div> -->
+    <div class="profile-container">
+      <h1 class="heading">User Profile</h1>
+      <div class="profile-section">
+        <div class="profile-image">
+          <img
+            src="../images/Make Up.jpg"
+            alt="Default User Profile Photo"
+            class="profile-photo"
+          />
+        </div>
+        <div class="profile-text">
+          <p class="name"><%= user.name %></p>
+        </div>
+      </div>
+      <div class="profile-information">
+        <div class="card">
+          <h2>Account Details</h2>
+          <hr />
+          <div class="content">
+            <p class="info"><strong>Email:</strong></p>
+            <h6><%= user.email %></h6>
+          </div>
+          <div class="content">
+            <p class="info"><strong>Username:</strong></p>
+            <h6><%= user.username %></h6>
+          </div>
+          <div class="content">
+              <p class="info" id="copyText">
+                <strong>Unique ID:</strong>
+                <br class="br">
+                <span id="uniqueId"><%= user.uniqueId %></span>
+              </p>
+            <button id="copyButton" aria-readonly="true">
+              <span class="spu">Copy Unique ID</span
+              ><span class="copy"><i class="fa-solid fa-copy"></i></span></i>
+            </button>
+          </div>
+        </div>
+        <!-- Chart Column -->
+        <div class="card">
+          <h2>Charts and Graph</h2>
+          <hr />
+          <div class="chart-buttons">
+            <button class="button" id="showPieChart">
+              <span class="button-content">Show Pie Chart</span>
+            </button>
+            <button class="button" id="showOldMonthGraph">
+              <span class="button-content">Show Old Month Graph</span>
+            </button>
+          </div>
+          <div id="chartContainer" class="chart-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert Box Design -->
+    <div id="customAlert" class="alert-box">
+      <div class="alert-content">
+        <div class="svg-icon">
+          <svg
+            width="50"
+            height="50"
+            id="Layer_1"
+            style="enable-background: new 0 0 128 128"
+            version="1.1"
+            viewBox="0 0 128 128"
+            xml:space="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g><circle fill="#fff" cx="64" cy="64" r="64" /></g>
+            <g>
+              <path
+                fill="#3EBD61"
+                d="M54.3,97.2L24.8,67.7c-0.4-0.4-0.4-1,0-1.4l8.5-8.5c0.4-0.4,1-0.4,1.4,0L55,78.1l38.2-38.2   c0.4-0.4,1-0.4,1.4,0l8.5,8.5c0.4,0.4,0.4,1,0,1.4L55.7,97.2C55.3,97.6,54.7,97.6,54.3,97.2z"
+              />
+            </g>
+          </svg>
+        </div>
+        <p>Unique ID copied to clipboard!</p>
+      </div>
+      <button id="closeAlert" class="btn">OK</button>
+    </div>
+
+    <script src="../javascripts/profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      src="https://kit.fontawesome.com/35021ce89d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      document
+        .getElementById("copyButton")
+        .addEventListener("click", function () {
+          // Get the unique ID text
+          var uniqueId = document.getElementById("uniqueId").textContent;
+
+          // Use the Clipboard API to copy the text
+          navigator.clipboard
+            .writeText(uniqueId)
+            .then(function () {
+              // Show the custom alert box
+              document.getElementById("customAlert").style.display = "block";
+              document.querySelector(".overlay").style.display = "block";
+            })
+            .catch(function (err) {
+              console.error("Failed to copy text: ", err);
+            });
+        });
+
+      // Close alert box when "OK" button is clicked
+      document
+        .getElementById("closeAlert")
+        .addEventListener("click", function () {
+          document.getElementById("customAlert").style.display = "none";
+          document.querySelector(".overlay").style.display = "none";
+        });
+    </script>
+  </body>
+</html>
+
+<!-- <h1>User Profile</h1>
+  <div class="profile-info">
+    <p><strong>Name:</strong> <%= user.name %></p>
+    <div class="copy">
+      <p id="copyText">
+        <strong>Username:</strong>
+        <span id="username"><%= user.username %></span>
+      </p>
+      <button id="copyButton" aria-readonly="true">Copy Username</button>
+    </div>
+    <p><strong>Email:</strong> <%= user.email %></p>
+  </div>
+
+  <div class="owes-info">
+    <p><strong>Amount You Owe:</strong> $<%= user.owes %></p>
+    <p><strong>Amount Owed to You:</strong> $<%= user.owed %></p>
+  </div>
+
+  <div class="chart-buttons">
+    <button id="showPieChart">Show Pie Chart</button>
+    <button id="showOldMonthGraph">Show Old Month Graph</button>
+  </div>
+
+  <div id="chartContainer" class="chart-container"></div> -->

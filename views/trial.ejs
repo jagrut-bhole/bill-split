@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Bill Splitter</title>
+    <link rel="stylesheet" href="../stylesheets/trail.css"> <!-- Link to your CSS file -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- For icons -->
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <div class="profile-section">
+                <img src="profile-pic.jpg" alt="Profile Picture">
+                <h3><%= user.name %></h3>
+                <p><%= user.email %>></p>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    <li><a href="/groups"><i class="fas fa-users"></i> Groups</a></li>
+                    <li><a href="/create-group"><i class="fas fa-plus"></i> Create Group</a></li>
+                    <li><a href="/about"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <h2>Group Expenses</h2>
+                <button class="btn add-expense">Add Expense</button>
+            </header>
+
+            <section class="overview">
+                <div class="card total-expense">
+                    <h4>Total Expense</h4>
+                    <p>₹25,842</p>
+                </div>
+                <div class="card you-are-owed">
+                    <h4>You are Owed</h4>
+                    <p>₹1,029</p>
+                </div>
+                <div class="card you-owe">
+                    <h4>You Owe</h4>
+                    <p>₹0</p>
+                </div>
+            </section>
+
+            <section class="expenses-list">
+                <h3>Group Expenses</h3>
+                <!-- Repeat this card for each expense -->
+                <div class="expense-card">
+                    <div class="date">12 APR</div>
+                    <div class="expense-details">
+                        <h4>Adobe Subscription</h4>
+                        <p>Total: ₹2,500 (Per Person: ₹625)</p>
+                    </div>
+                </div>
+                <!-- Add more cards here -->
+            </section>
+
+            <section class="charts">
+                <div class="category-expense-chart">
+                    <h4>Category Expense Chart</h4>
+                    <div class="chart"></div> <!-- Placeholder for Chart.js or similar -->
+                </div>
+                <div class="monthly-expense-graph">
+                    <h4>Monthly Expense Graph</h4>
+                    <div class="chart"></div> <!-- Placeholder for Chart.js or similar -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../public//javascripts/trial.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

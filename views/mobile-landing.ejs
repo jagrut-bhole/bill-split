@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../stylesheets/mobile.css" />
+    <title>Bill Splitter</title>
+  </head>
+  <body>
+    <% if (user) { %>
+    <nav>
+      <div class="nav-bar">
+        <div class="name"><h4>Bill Splitter</h4></div>
+        <div class="another-links">
+          <div class="button-class">
+            <a class="button2" href="/login">LOGIN</a>
+            <a class="button" href="/signup">SIGN-UP</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <% } else { %>
+        <h1>Hello</h1>
+    <% } %>
+    <header>
+      <div class="hero">
+        <div class="content">
+          <h1 class="title">Split up your Bills<br /><span>Today</span></h1>
+          <p>Manage your expenses effortlessly and split bills with ease.</p>
+          <% if (user) { %>
+          <a href="/dashboard" target="_blank" rel="noreferrer noopener" >Get Started</a>
+          <% } else { %>
+          <a href="/signup" target="_blank" rel="noreferrer noopener" >Start now</a>
+          <% } %>
+        </div>
+      </div>
+    </header>
+  </body>
+</html>

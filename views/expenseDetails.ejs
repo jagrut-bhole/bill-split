@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Details- <%= expense.name %></title>
+    <link rel="stylesheet" href="../stylesheets/expenseDetails.css" />
+
+    <!-- external links -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <script text="text/javascript" src="../javascripts/multiselect.js"></script>
+
+
+  </head>
+  <body>
+    <button onclick="goBack()" class="back-btn">Back to GROUP Section</button>
+    <div class="expense-details-container">
+      <div class="header">
+        <h1>
+          Expense Details for Group:
+          <span id="group-name"><%= group.name %></span>
+        </h1>
+      </div>
+      <div class="expense-summary">
+        <div class="expense-info">
+          <div class="category-content">
+            <div class="expense-category-image">
+              <% if (expense.category === 'Fuel') { %>
+              <img src="../images/category-img/fuel.png" alt="Fuel" />
+
+              <% } else if (expense.category === 'Food') { %>
+              <img src="../images/category-img/food.png" alt="Food" />
+
+              <% } else if (expense.category === 'Travel') { %>
+              <img src="../images/category-img/travel.png" alt="Shopping" />
+
+              <% } else if (expense.category === 'Bus-Train') { %>
+              <img src="../images/category-img/bus-train.png" alt="Bus/Train" />
+
+              <% } else if (expense.category === 'Taxi') { %>
+              <img src="../images/category-img/taxi.png" alt="Taxi" />
+
+              <% } else if (expense.category === 'Plane') { %>
+              <img src="../images/category-img/plane.png" alt="Plane" />
+
+              <% } else if (expense.category === 'Rent') { %>
+              <img src="../images/category-img/rent.png" alt="Rent" />
+
+              <% } else if (expense.category === 'Medical-expense') { %>
+              <img
+                src="../images/category-img/medical-expense.png"
+                alt="Medical-Expense"
+              />
+
+              <% } else if (expense.category === 'Gifts') { %>
+              <img src="../images/category-img/gifts.png" alt="Gifts" />
+
+              <% } else if (expense.category === 'Bill') { %>
+              <img src="../images/category-img/bill.png" alt="Bills" />
+
+              <% } else if (expense.category === 'Taxes') { %>
+              <img src="../images/category-img/taxes.png" alt="Taxes" />
+
+              <% } else if (expense.category === 'Cleaning') { %>
+              <img src="../images/category-img/cleaning.png" alt="Cleaning" />
+
+              <% } else if (expense.category === 'Clothing') { %>
+              <img src="../images/category-img/clothing.png" alt="Clothing" />
+
+              <% } else if (expense.category === 'Liquor') { %>
+              <img src="../images/category-img/liquor.png" alt="Liquor" />
+
+              <% } else if (expense.category === 'Maintenance') { %>
+              <img
+                src="../images/category-img/maintenance.png"
+                alt="Maintenance"
+              />
+
+              <% } else { %>
+              <img src="../images/category-img/other.png" alt="Other" />
+
+              <% } %>
+            </div>
+            <div class="expense-content">
+              <h3><%= expense.name %></h3>
+              <h2>
+                INR <span id="total-expense"> <%= expense.amount %></span>
+              </h2>
+              <h4>
+                Added by <%= expense.owner.name %> on <%= new
+                Date(expense.createdAt).toLocaleDateString('en-US', { year:
+                'numeric', month: 'long', day: 'numeric' }) %>
+              </h4>
+            </div>
+            <div class="edit-button">
+              <button
+                id="edit-expense"
+                onclick="openEditModal()"
+                class="edit-btn"
+                type="button"
+              >
+                Edit Expense
+              </button>
+              <button id="delete-expense" onclick="openDeleteModal(`<%= expense._id %>`)" class="delete-btn" type="button">
+                Delete Expense
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="member-status">
+        <ul>
+          <!-- Display the owner's details -->
+          <li class="heading-split">
+            <span class="material-symbols-outlined"> double_arrow </span>
+            <%= expense.owner.name %> paid INR <%= expense.amount %> and owes
+            INR <%= (expense.amount / expense.members.length).toFixed(2) %>
+          </li>
+          <h3>Member Balances:</h3>
+
+          <!-- Display other members' details (excluding the owner) -->
+          <% expense.members.forEach(member => { %> <% if (member._id !==
+          expense.owner._id) { %>
+          <li class="other-members">
+            <%= member.name %> owes INR <%= (expense.amount /
+            expense.members.length).toFixed(2) %>
+          </li>
+          <% } %> <% }) %>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Modal Form for editing expense -->
+
+    <div id="editExpenseModal" class="modal" style="display: none">
+      <div class="modal-content">
+        <!-- <div class="close" onclick="closeEditModal()">&times;</div> -->
+        <button class="close" onclick="closeEditModal()">
+          <svg height="20px" viewBox="0 0 384 512">
+            <path
+              d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+            ></path>
+          </svg>
+        </button>
+        <h3>Edit Expense</h3>
+        <form action="/expense/edit/<%= expense._id %>" method="POST">
+          <div class="form-group">
+            <label for="name">Expense Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value="<%= expense.name %>"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Amount:</label>
+            <div class="input-group">
+              <span>₹</span>
+              <input
+              type="number"
+              id="number"
+              name="amount"
+              value="<%= expense.amount %>"
+              required
+            />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-members">Expense Members:</label>
+            <select
+              name="members"
+              id="members"
+              multiple
+              multiselect-search="true"
+              multiselect-select-all="true"
+              multiselect-max-items="10"
+              style="width: 100%; min-width: 200px"
+              required
+            >
+              <% group.members.forEach(member => { %>
+                <option value="<%= member._id %>"
+                  <%= expense.members.some(m => String(m._id) === String(member._id)) ? 'selected' : '' %>
+                >
+                  <%= member.name %>
+                </option>
+              <% }) %>
+            </select>
+          </div>
+          
+          <div class="card-button-wrapper">
+            <button class="card-button secondary" type="button" onclick="closeEditModal()">Cancel</button>
+          <button class="card-button primary" type="submit">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Delete expense form -->
+    <div class="modalDelete fade"
+    id="deleteExpenseModal"
+    tabindex="-1"
+    aria-labelledby="deleteExpenseModalLabel"
+    aria-hidden="true">
+  
+  <div class="modal-dialog">
+    <div class="modalDelete-content">
+      <form action="/expense/deleteExpense" id="deleteExpenseForm" method="DELETE">
+        <input type="hidden" name="expenseId" value="<%= expense._id %>">
+        <div class="confirmation-div">
+          <p>
+            <strong>The <%= expense.name %> Expense will be <br>eliminated.</strong>
+            <span>Are you sure you want to continue? This process cannot be undone.</span>
+          </p>
+          <div class="modal-container">
+            <button type="button" class="red-btn" data-ds-dismiss="modal" onclick="closeDeleteModal()">Cancel</button>
+            <button class="green-btn" id="confirmDeleteButton">Accept</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+    <script>
+      function openEditModal() {
+        document.getElementById("editExpenseModal").style.display = "block";
+      }
+
+      function closeEditModal() {
+        document.getElementById("editExpenseModal").style.display = "none";
+      }
+
+      // Deleting expense form code
+      function openDeleteModal() {
+        document.getElementById("deleteExpenseModal").style.display = "block";
+      }
+      function closeDeleteModal() {
+        document.getElementById("deleteExpenseModal").style.display = "none";
+      }
+      var modal = document.getElementById("editExpenseModal")
+      var confirmDeleteButton = document.getElementById("confirmDeleteButton");
+
+      var expenseId = "<%= expense._id %>";
+
+      confirmDeleteButton.onclick = function() {
+        fetch(`/expense/deleteExpense/${expenseId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json"
+          },
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data.message);
+          window.location.href = `/dashboard`;
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+        modal.style.display = 'none';
+      }
+
+      function goBack() {
+        if(navigation.canGoBack) {
+          history.back();
+        }
+      }
+
+
+    </script>
+  </body>
+</html>

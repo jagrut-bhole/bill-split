@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f7fa;
+}
+
+
+/* Modal styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+}
+
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-label {
+  font-weight: bold;
+}
+
+.form-control,
+.form-select {
+  margin-bottom: 10px;
+}
+
+.d-flex.justify-content-end {
+  margin-top: 20px;
+}
+
+/* Group-Container */
+.group-container {
+  z-index: 2;
+  max-width: 1300px;
+  margin: 14vh auto 0 auto;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 80vh;
+  overflow-y: hidden;
+}
+
+.groups-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.groups-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 20px 10px 0px 10px; 
+}
+
+/* No Group Design */
+.no-group-card {
+  width: 400px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f7f7f7;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  margin: 18vh auto;
+}
+
+.no-group-card:hover{
+  cursor: no-drop;
+}
+
+.no-group-card h4 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.alert {
+  width: 100px;
+  height:100px
+}
+
+.no-group-card .message {
+  margin-top: 1rem;
+  color: rgba(107, 114, 128, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media screen and (max-width: 768px) {
+  .group-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .group-card {
+    width: calc(100% - 20px);
+  }
+}
+
+/* With group button design */
+
+.create-group-button {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 0.8em 1.5em 0.8em 1.2em;
+  color: white;
+  background: linear-gradient(
+    0deg,
+    rgba(77, 54, 208, 1) 0%,
+    rgba(132, 116, 254, 1) 100%
+  );
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em #4d36d0be;
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+}
+
+/* Inner Group Design */
+
+.group-redirect{
+  text-decoration: none;
+}
+
+.groups-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  padding: 20px 10px 0px 10px;
+  max-height: 577px;
+}
+
+.group-card {
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #000;
+  padding: 20px;
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: auto;
+}
+
+.group-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.group-head {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.user-debts {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 10px;
+  line-height: 1.5;
+  overflow-y: auto; 
+  max-height: 180px;
+}
+
+.settings-icon {
+  position: absolute;
+  right:30px;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .group-card {
+    min-height: auto; /* Allow height to adjust on smaller screens */
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .create-group-button {
+    font-size: 13px;
+    text-align: center;
+    margin-top: -1vh;
+  }
+
+  .group-create-details{
+    display: none;
+  }
+  
+  .group-card {
+    flex-direction: column;
+    width: 100%;
+    min-height: 23vh;
+  }
+
+  .settings-icon {
+    position: absolute;
+    font-size: 1.2em;
+    cursor: pointer;
+    right: 30px;
+  }
+}

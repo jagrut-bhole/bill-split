@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../stylesheets/group.css" />
+    <script text="text/javascript" src="../javascripts/multiselect.js"></script>
+    <title>Group: <%= group.name %></title>
+  </head>
+  <body>
+    <!-- Navbar -->
+
+    <nav>
+      <div class="name">
+        <h3>Bill Splitter</h3>
+      </div>
+      <div class="hero">
+        <img
+          src="../images/Make Up.jpg"
+          alt="User Pic"
+          class="user-pic"
+          onclick="toggleMenu()"
+        />
+
+        <div class="sub-menu-wrap" id="subMenu">
+          <div class="sub-menu">
+            <div class="user-info">
+              <img src="../images/Make Up.jpg" />
+              <h3><%= user.name %></h3>
+            </div>
+            <hr />
+            <a href="/profile" class="sub-menu-link">
+              <img src="../images/drop-down/profile.png" />
+              <p>Edit Profile</p>
+              <span> > </span>
+            </a>
+            <a href="/setting" class="sub-menu-link">
+              <img src="../images/drop-down/setting.png" />
+              <p>Settings</p>
+              <span> > </span>
+            </a>
+            <a href="/contact-us" class="sub-menu-link">
+              <img src="../images/drop-down/help.png" />
+              <p>Needed Any Help ?</p>
+              <span> > </span>
+            </a>
+            <a href="/logout" class="sub-menu-link">
+              <img src="../images/drop-down/logout.png" />
+              <p>Log Out</p>
+              <span> > </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Expense adding container -->
+    <div class="container-box">
+      <div class="container">
+        <div class="group-header">
+          <h2 class="group-title"><%= group.name %></h2>
+          <p class="group-description"><%= group.description %></p>
+          <p class="group-creator">
+            <span class="x" style="color: grey">Created by</span>
+            <%= group.createdBy.email %>
+          </p>
+          <span class="group-category">Category: <%= group.category %></span>
+          <div class="group-invite">
+            <button class="invite-member">+ Invite / Add</button>
+          </div>
+          <div class="group-actions">
+            <button id="openAddExpenseModal" class="add-expense">
+              Add Expense
+            </button>
+          </div>
+        </div>
+
+        <div class="balance-summary">
+          <div class="balance-card total-expense">
+            <h3>Total Expense</h3>
+            <p>₹ <%= totalExpense %></p>
+          </div>
+          <div class="balance-card you-are-owed">
+            <h3>You are owed</h3>
+            <p>₹ <%= userOwed %></p>
+          </div>
+          <div class="balance-card you-owe">
+            <h3>You owe</h3>
+            <p>₹ <%= userOwes %></p>
+          </div>
+        </div>
+
+        <div class="target-container">
+          <div
+            id="group-expense"
+            class="section"
+            data-section="group-expense-content"
+            onclick="showSection('group-expense-content')"
+          >
+            <span class="A">Group Transactions</span>
+          </div>
+
+          <div
+            id="my-balance"
+            class="section"
+            data-section="my-balance-content"
+            onclick="showSection('my-balance-content')"
+          >
+            <span class="B">My Balance</span>
+          </div>
+
+          <div
+            id="group-members"
+            class="section"
+            data-section="group-members-content"
+            onclick="showSection('group-members-content')"
+          >
+            <span class="C">Group Members</span>
+          </div>
+        </div>
+
+        <div class="content-container">
+          <div id="group-expense-content" class="content">
+            <!-- Expense Section -->
+            <div class="expense-section">
+              <h3>Group Transaction</h3>
+              <% if (group.expenses && group.expenses.length > 0) { %>
+              <div class="expense-showcase">
+                <% group.expenses.forEach(expense => { %>
+                <div class="each-showcase">
+                  <div class="date-badge">
+                    <span class="date-day"
+                      ><%= new Date(expense.date).getDate() %></span
+                    >
+                    <span class="date-month"
+                      ><%= new Date(expense.date).toLocaleString('default', {
+                      month: 'short' }) %></span
+                    >
+                  </div>
+                  <div class="expense-details">
+                    <a href="/expense/expenseDetails?id=<%= expense._id %>">
+                      <h4 class="expense-name clickable">
+                        <%= expense.name %>
+                      </h4>
+                    </a>
+                    <p class="expense-amount">Total: ₹<%= expense.amount %></p>
+                    <p class="expense-owner">
+                      Paid by, <%= expense.owner.username %> (<%=
+                      expense.owner.email %>)
+                    </p>
+                    <p class="expense-per-person">
+                      Per person: ₹<%= (expense.amount /
+                      expense.members.length).toFixed(2) %>
+                    </p>
+                  </div>
+                </div>
+                <% }) %>
+              </div>
+              <% } else { %>
+              <p>
+                No expense present for this group! Record your first group
+                expense now.
+              </p>
+              <a class="add-expense-link">Add Expense →</a>
+              <% } %>
+            </div>
+          </div>
+
+          <div id="my-balance-content" class="content" style="display: none">
+            <div class="balance-section">
+              <h4>Your Balance Overview</h4>
+
+              <!-- Display how much user owes to others -->
+              <% if (balanceData && balanceData.owes.length > 0) { %>
+              <h5>You Owe</h5>
+              <ul>
+                <% balanceData.owes.forEach(function(owe) { %>
+                <li>
+                  You owe <strong><%= owe.amount %></strong> to <%=
+                  group.members.find(m => m._id.equals(owe.to)).username %>
+                </li>
+                <% }) %>
+              </ul>
+              <% } else { %>
+              <p>You don't owe anything to anyone in this group.</p>
+              <% } %>
+
+              <!-- Display how much others owe to the user -->
+              <% if (balanceData && balanceData.owedBy.length > 0) { %>
+              <h5>Others Owe You</h5>
+              <ul>
+                <% balanceData.owedBy.forEach(function(owed) { %>
+                <li>
+                  <%= group.members.find(m => m._id.equals(owed.from)).username
+                  %> owes you <strong><%= owed.amount %></strong>
+                </li>
+                <% }) %>
+              </ul>
+              <% } else { %>
+              <p>No one owes you anything in this group.</p>
+              <% } %>
+            </div>
+          </div>
+
+          <div id="group-members-content" class="content" style="display: none">
+            <h3 class="heading">Group Members</h3>
+
+            <% if (group.members && group.members.length > 0) { %>
+            <table class="members-table">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% group.members.forEach(member => { %>
+                <tr>
+                  <td><%= member.username %></td>
+                  <td><%= member.email %></td>
+                </tr>
+                <% }) %>
+              </tbody>
+            </table>
+            <% } else { %>
+            <p>No members added yet.</p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal form for inviting user to group -->
+
+    <div id="inviteModal" class="invite-modal">
+      <div class="invite-content">
+        <div class="temp">
+          <span class="close">&times;</span>
+          <h2 class="invite-title">Invite to Group</h2>
+        </div>
+        <form id="inviteForm" action="/group/invite" method="POST">
+          <!-- <label for="email">Email Address:</label> -->
+          <div class="input-container">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter Email Address"
+              required
+            />
+          </div>
+          <input type="hidden" name="groupId" value="<%= group._id %>" />
+          <button class="invite-buut" type="submit">Send Invitation</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal form for adding expense -->
+    <div id="expenseModal" class="expense-modal">
+      <div class="expense-content">
+        <!-- <span class="close">&times;</span>  -->
+        <h2>Add Expense</h2>
+        <form id="add-expense-form" action="/group/addExpense" method="POST">
+          <input type="hidden" name="groupId" value="<%= group._id %>" />
+          <div class="form-group">
+            <label for="expense-name">Expense Name</label>
+            <input
+              name="name"
+              type="text"
+              id="expense-name"
+              placeholder="Expense Name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="expense-description">Expense Description</label>
+            <input type="text" id="expense-description" name="description" />
+          </div>
+
+          <div class="form-group">
+            <label for="expense-owner">Expense Owner</label>
+            <select id="expense-owner" name="ownerId">
+              <% group.members.forEach(member => { %>
+              <option value="<%= member._id %>">
+                <%= member.username %> (<%= member.email %>)
+                <!--(<%= member.email %>) -->
+              </option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-amount">Expense Amount</label>
+            <div class="input-group">
+              <span>₹</span>
+              <input
+                type="text"
+                id="expense-amount"
+                placeholder="Expense Amount"
+                name="amount"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-members">Expense Members</label>
+            <select
+              name="members"
+              id="members"
+              multiple
+              multiselect-search="true"
+              multiselect-select-all="true"
+              multiselect-max-items="10"
+              style="width: 100%; min-width: 200px"
+              required
+            >
+              <% group.members.forEach(member => { %>
+              <option value="<%= member._id %>"><%= member.name %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="payment-method">Payment Method</label>
+            <select id="payment-method" required name="paymentMethod">
+              <option>CASH</option>
+              <option>UPI</option>
+              <option>CARD</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="category">Category:</label>
+            <select name="category" id="category" required>
+              <option value="Food">FOOD</option>
+              <option value="Fuel">Fuel</option>
+              <option value="Shopping">Shopping</option>
+              <option value="Bus-Train">Bus-Train</option>
+              <option value="Taxi">Taxi</option>
+              <option value="Groceries">Groceries</option>
+              <option value="Plane">Plane</option>
+              <option value="Taxes">Taxes</option>
+              <option value="Gifts">Gifts</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Medical-expense">Medical-Expense</option>
+              <option value="Liquor">Liquor</option>
+              <option value="Maintenance">Maintenance</option>
+              <option value="Cleaning">Cleaning</option>
+              <option value="Bill">Bills</option>
+              <option value="Rent">Rent</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="expense-date">Expense Date</label>
+            <input type="date" id="expense-date" required name="date" />
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="cancelBtn" class="cancel">Cancel</button>
+            <button type="submit" class="add-btn">Add Expense</button>
+          </div>
+
+          <input type="hidden" name="ownerId" value="<%= user._id %>" />
+        </form>
+      </div>
+    </div>
+
+    <script src="../javascripts/group.js"></script>
+
+    <script>
+      let subMenu = document.getElementById("subMenu");
+
+      function toggleMenu() {
+        subMenu.classList.toggle("open-menu");
+      }
+    </script>
+  </body>
+</html>

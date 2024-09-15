@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../stylesheets/authenticate.css" />
+    <title>Login Page</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Login Account</h2>
+      </div>
+      <form id="form" class="form">
+        <div class="form-control">
+          <label for="username">Email: </label>
+          <input
+            type="text"
+            placeholder="Enter Email here"
+            id="email"
+            name="email"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <span class="email error"></span>
+        </div>
+        <div class="form-control">
+          <label for="username">Password: </label>
+          <input
+            type="password"
+            placeholder="Enter password here"
+            id="password"
+            name="password"
+          />
+          <i class="fas fa-check-circle"></i>
+          <i class="fas fa-exclamation-circle"></i>
+          <span class="password error"></span>
+        </div>
+        <button class="buut">Login</button>
+      </form>
+      <div class="redirect-to-another">
+        <a href="/signup">Don't have an account ?</a>
+      </div>
+    </div>
+
+    <script src="../javascripts/script.js"></script>
+    <script src="../javascripts/authenticate-login.js"></script>
+  </body>
+</html>
