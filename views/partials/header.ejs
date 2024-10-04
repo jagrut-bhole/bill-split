@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Nav-Bar */
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid #a2a2a2;
+  backdrop-filter: blur(10px);
+  -webkit-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 14px 0px rgba(0, 0, 0, 0.75);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 100%;
+  position: fixed;
+  margin-left: -8px;
+  top: 0;
+  width: 100%;
+  z-index: 20;
+  max-width: 100%;
+}
+
+.navbar {
+  justify-content: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+nav .name {
+  font-size: 10px;
+  font-weight: 500;
+  text-align: center;
+  margin: 5px 0 -1px 10px;
+  color: #000000;
+}
+
+.another-name-1 {
+  margin-left: 700px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.another-name-1 .links {
+  display: flex;
+}
+.another-name-1 .links li {
+  text-align: center;
+  margin: 0 30px;
+}
+.another-name-1 ul li {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.another-name-1 ul li a {
+  text-decoration: none;
+  z-index: 0;
+  cursor: pointer;
+  position: relative;
+  color: #000000;
+  font-size: 19px;
+  letter-spacing: 2px;
+}
+.another-name-1 ul li a:hover{
+  color: #ff7d00;
+  transition: all 0.7s;
+}
+.button-class {
+  display: flex;
+  flex-direction: row;
+}
+.button-class a{
+  text-decoration: none;
+}
+
+.button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 18px;
+  margin-top: 2px;
+  padding: 0.8em 0.3em;
+  border: 2px solid var(--accent);
+  color: canvas;
+  background: var(--accent);
+  border-radius: 20em;
+  width: 100px;
+  height: 50px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  letter-spacing: 2px;
+}
+.button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: hsl(0 0% 100% / 0);
+}
+.button:is(:hover, :focus-visible)::after {
+  background: hsl(0 0% 100% / 0.1);
+}
+.button2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 60px;
+  cursor: pointer;
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="name">
+          <h3>Bill Splitter</h3>
+        </div>
+        <div class="another-name-1">
+          <% if (user) { %> 
+          <ul class="links">
+            <li><a href="/">HOME</a></li>
+            <li><a href="/profile">PROFILE</a></li>
+            <li><a href="/logout">LOGOUT</a></li>
+          </ul>
+          <% } else { %>
+          <div class="button-class">
+            <!-- <button id="navigate-button" class="button">SIGN-UP/LOGIN</button> -->
+            <a class="button2" href="/login">LOGIN</a>
+            <a class="button" href="/signup">SIGN-UP</a>
+          </div>
+          <% } %>
+        </div>
+      </nav>
+</body>
+</html>

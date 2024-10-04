@@ -1,14 +1,11 @@
 var express = require("express");
 var router = express.Router();
-const { requireAuth, checkUser } = require("../middleware/authmiddleware");
-const Group = require("../models/group");
-const User = require("../models/user");
-const { default: mongoose } = require("mongoose");
+const { requireAuth, checkUser, navigateauthenticate } = require("../middleware/authmiddleware");
 
 router.get("*", checkUser);
 
 /* GET home page*/
-router.get('/', (req, res) => {
+router.get('/',navigateauthenticate, (req, res) => {
   if (req.useragent.isMobile) {
       // Serve mobile version of the page
       res.render('mobile-landing');

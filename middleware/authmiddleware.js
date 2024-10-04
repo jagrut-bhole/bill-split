@@ -52,4 +52,20 @@ const checkUser = (req, res, next) => {
   }
 };
 
-module.exports = { requireAuth, checkUser };
+const navigateauthenticate = (req, res, next) => {
+  const token = req.cookies.jwt;
+
+  if (token) {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+      if (err) {
+        return res.redirect("/home");
+      }
+      req.user = user;
+      return res.redirect("/dashboard");
+    });
+  } else {
+    res.redirect("/home");
+  }
+};
+
+module.exports = { requireAuth, checkUser, navigateauthenticate };

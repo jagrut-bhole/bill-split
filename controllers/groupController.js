@@ -190,12 +190,13 @@ module.exports.invite_post = async (req, res) => {
         to: email,
         from: process.env.EMAIL_USER,
         subject: "Invitation to join your group",
-        text: `Please click th following link to join the group:\n\n ${inviteUrl}`,
+        text: `Please click the following link to join the group:\n\n ${inviteUrl}`,
       };
 
       await transporter.sendMail(mailOptions);
 
-      res.status(200).send("Invitation Sent SuccessFully");
+      // res.status(200).send("Invitation Sent SuccessFully");
+      res.render('invitationSent')
     } else {
       //If user already exists
 
@@ -223,7 +224,9 @@ module.exports.invite_post = async (req, res) => {
 
       await transporter.sendMail(mailOptions);
 
-      res.status(200).send("User added to the group successfully.");
+      // res.status(200).json({message: "User added to the group successfully."});
+
+      res.render('success')
     }
   } catch (err) {
     console.error("Error in sending the invitation: ", err);
