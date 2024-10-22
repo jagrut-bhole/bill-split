@@ -1,10 +1,11 @@
-const { requireAuth } = require("../middleware/authmiddleware");
+
 const Group = require("../models/group");
 const User = require("../models/user");
 
 module.exports.dashboard_get = async (req, res) => {
   try {
     const userId = req.user._id;
+    console.log(userId)
 
     // Fetch all groups where the user is the creator or a member
     const groups = await Group.find({

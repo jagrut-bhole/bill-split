@@ -146,7 +146,7 @@
                     </a>
                     <p class="expense-amount">Total: ₹<%= expense.amount %></p>
                     <p class="expense-owner">
-                      Paid by, <%= expense.owner.username %> (<%=
+                      Paid by <%= expense.owner.username %> (<%=
                       expense.owner.email %>)
                     </p>
                     <p class="expense-per-person">
@@ -187,19 +187,29 @@
               <% } %>
 
               <!-- Display how much others owe to the user -->
-              <% if (balanceData && balanceData.owedBy.length > 0) { %>
-              <h5>Others Owe You</h5>
-              <ul>
-                <% balanceData.owedBy.forEach(function(owed) { %>
-                <li>
-                  <%= group.members.find(m => m._id.equals(owed.from)).username
-                  %> owes you <strong><%= owed.amount %></strong>
-                </li>
-                <% }) %>
-              </ul>
+              <% if (balanceData && balanceData.owedBy.length > 0) { %> 
+                <h5>Others Owe You</h5>
+                <ul>
+                  <% 
+                  let uniqueOwed = [];
+                  balanceData.owedBy.forEach(function(owed) {
+                    // Check if this user is already in the uniqueOwed array
+                    if (!uniqueOwed.find(item => item.from.equals(owed.from))) {
+                      uniqueOwed.push(owed);
+                    }
+                  });
+              
+                  // Now render only the unique entries
+                  uniqueOwed.forEach(function(owed) { %>
+                    <li>
+                      <%= group.members.find(m => m._id.equals(owed.from)).username %> owes you <strong><%= owed.amount %></strong>
+                    </li>
+                  <% }) %> 
+                </ul>
               <% } else { %>
-              <p>No one owes you anything in this group.</p>
+                <p>No one owes you anything in this group.</p>
               <% } %>
+              
             </div>
           </div>
 

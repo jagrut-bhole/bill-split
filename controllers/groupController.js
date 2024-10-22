@@ -128,6 +128,7 @@ module.exports.group_delete = async (req, res) => {
   try {
     const groupId = req.params.id;
     const userId = req.user._id;
+    // const userId = req.user;
 
     console.log("Group Id:", groupId);
     console.log("User Id:", userId);

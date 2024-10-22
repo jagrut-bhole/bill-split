@@ -44,15 +44,14 @@
             <h6><%= user.username %></h6>
           </div>
           <div class="content">
-              <p class="info" id="copyText">
-                <strong>Unique ID:</strong>
-                <br class="br">
-                <span id="uniqueId"><%= user.uniqueId %></span>
-              </p>
-            <button id="copyButton" aria-readonly="true">
-              <span class="spu">Copy Unique ID</span
-              ><span class="copy"><i class="fa-solid fa-copy"></i></span></i>
-            </button>
+            <p class="info"><strong>Member Since:</strong></p>
+            <h6>
+              <%= new Date(user.memberSince).toLocaleString('en-US', { month: 'short' }).toUpperCase() %> 
+              <%= ("0" + new Date(user.memberSince).getDate()).slice(-2) %> 
+              <%= new Date(user.memberSince).getFullYear() %>
+            </h6>
+            
+            
           </div>
         </div>
         <!-- Chart Column -->
@@ -69,8 +68,6 @@
           </div>
           <div id="chartContainer" class="chart-container"></div>
         </div>
-      </div>
-    </div>
 
     <!-- Alert Box Design -->
     <div id="customAlert" class="alert-box">
@@ -108,24 +105,6 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      document
-        .getElementById("copyButton")
-        .addEventListener("click", function () {
-          // Get the unique ID text
-          var uniqueId = document.getElementById("uniqueId").textContent;
-
-          // Use the Clipboard API to copy the text
-          navigator.clipboard
-            .writeText(uniqueId)
-            .then(function () {
-              // Show the custom alert box
-              document.getElementById("customAlert").style.display = "block";
-              document.querySelector(".overlay").style.display = "block";
-            })
-            .catch(function (err) {
-              console.error("Failed to copy text: ", err);
-            });
-        });
 
       // Close alert box when "OK" button is clicked
       document
@@ -135,30 +114,60 @@
           document.querySelector(".overlay").style.display = "none";
         });
     </script>
+    <script>
+      document.getElementById("showPieChart").addEventListener("click", function () {
+        fetchChartData("/api/group-spending", "pie");
+      });
+    
+      document
+        .getElementById("showOldMonthGraph")
+        .addEventListener("click", function () {
+          fetchChartData("/api/monthly-spending", "bar");
+        });
+    
+      function fetchChartData(apiEndpoint, chartType) {
+        fetch(apiEndpoint)
+          .then((response) => response.json())
+          .then((data) => {
+            displayChart(data, chartType);
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+      }
+    
+      function displayChart(data, type) {
+        const config = {
+          type: type,
+          data: {
+            labels: data.labels,
+            datasets: [
+              {
+                label: data.label,
+                data: data.values,
+                backgroundColor: [
+                  "#ff6384",
+                  "#36a2eb",
+                  "#cc65fe",
+                  "#ffce56",
+                  "#ff9f40",
+                ],
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+          },
+        };
+    
+        // Clear previous chart
+        document.getElementById("chartContainer").innerHTML = "";
+    
+        const canvas = document.createElement("canvas");
+        document.getElementById("chartContainer").appendChild(canvas);
+    
+        new Chart(canvas.getContext("2d"), config);
+      }
+    </script>
   </body>
 </html>
 
-<!-- <h1>User Profile</h1>
-  <div class="profile-info">
-    <p><strong>Name:</strong> <%= user.name %></p>
-    <div class="copy">
-      <p id="copyText">
-        <strong>Username:</strong>
-        <span id="username"><%= user.username %></span>
-      </p>
-      <button id="copyButton" aria-readonly="true">Copy Username</button>
-    </div>
-    <p><strong>Email:</strong> <%= user.email %></p>
-  </div>
-
-  <div class="owes-info">
-    <p><strong>Amount You Owe:</strong> $<%= user.owes %></p>
-    <p><strong>Amount Owed to You:</strong> $<%= user.owed %></p>
-  </div>
-
-  <div class="chart-buttons">
-    <button id="showPieChart">Show Pie Chart</button>
-    <button id="showOldMonthGraph">Show Old Month Graph</button>
-  </div>
-
-  <div id="chartContainer" class="chart-container"></div> -->

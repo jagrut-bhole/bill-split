@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { isEmail } = require("validator");
 const bcrypt = require("bcrypt");
-const { v4: uuidv4 } = require('uuid');
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -25,11 +24,10 @@ const userSchema = new mongoose.Schema({
     required: [true, "Please enter an password."],
     minlength: [6, "Password should be minimum 6 letters long"],
   },
-  uniqueId: {
-    type: String,
-    default: uuidv4, // Automatically generate a UUID when a user is created
-    unique: true,
-  }
+  memberSince: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 //Fire a function after document saved to Database

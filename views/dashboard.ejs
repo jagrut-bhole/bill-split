@@ -45,7 +45,7 @@
         <div class="group-card">
           <div class="group-details">
             <a href="/group?id=<%= group._id %>" class="group-redirect">
-              <h4 class="group-head" style="color: aqua;"><%= group.name %></h4>
+              <h4 class="group-head" style="color: aqua"><%= group.name %></h4>
             </a>
             <div class="user-debts">
               <% group.members.forEach(function(member) { %> <% if(member.owes >
@@ -229,6 +229,7 @@
         </div>
       </div>
     </div>
+
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

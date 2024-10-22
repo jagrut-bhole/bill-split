@@ -13,7 +13,7 @@ var indexRouter = require("./routes/index");
 var authRouter = require("./routes/authRoutes");
 const groupRoute = require('./routes/groupRoute');
 const dashboardRoute = require('./routes/dashboardRoute');
-const expenseRoute = require('./routes/expenseRoute')
+const expenseRoute = require('./routes/expenseRoute');
 
 
 const { default: mongoose } = require("mongoose");

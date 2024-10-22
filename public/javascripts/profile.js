@@ -1,32 +1,16 @@
 document.getElementById("showPieChart").addEventListener("click", function () {
-  displayChart("pie");
+  fetchGroupSpendingData().then((data) => {
+    displayChart("pie", data);
+  });
 });
 
-document
-  .getElementById("showOldMonthGraph")
-  .addEventListener("click", function () {
-    displayChart("bar");
+document.getElementById("showOldMonthGraph").addEventListener("click", function () {
+  fetchMonthlySpendingData().then((data) => {
+    displayChart("bar", data);
   });
+});
 
-function displayChart(type) {
-  // Dummy data for the example
-  const data = {
-    labels: ["Rent", "Food", "Utilities", "Transport", "Miscellaneous"],
-    datasets: [
-      {
-        label: "Monthly Spending",
-        data: [500, 200, 100, 150, 50],
-        backgroundColor: [
-          "#ff6384",
-          "#36a2eb",
-          "#cc65fe",
-          "#ffce56",
-          "#ff9f40",
-        ],
-      },
-    ],
-  };
-
+function displayChart(type, data) {
   const config = {
     type: type,
     data: data,
@@ -43,4 +27,35 @@ function displayChart(type) {
   document.getElementById("chartContainer").appendChild(canvas);
 
   new Chart(canvas.getContext("2d"), config);
+}
+
+// Functions to fetch data from the server
+async function fetchGroupSpendingData() {
+  const response = await fetch("/api/group-spending");
+  const data = await response.json();
+  return {
+    labels: data.labels, // Group names
+    datasets: [
+      {
+        label: "Group Spending",
+        data: data.amounts, // Spending amounts per group
+        backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56", "#ff9f40"],
+      },
+    ],
+  };
+}
+
+async function fetchMonthlySpendingData() {
+  const response = await fetch("/api/monthly-spending");
+  const data = await response.json();
+  return {
+    labels: data.labels, // Category names
+    datasets: [
+      {
+        label: "Monthly Spending",
+        data: data.amounts, // Spending amounts per category
+        backgroundColor: ["#ff6384", "#36a2eb", "#cc65fe", "#ffce56", "#ff9f40"],
+      },
+    ],
+  };
 }
